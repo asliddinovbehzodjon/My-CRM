@@ -18,6 +18,30 @@ from django.urls import path,include,re_path
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer,TokenRefreshSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView,TokenRefreshView
+from rest_framework_simplejwt.tokens import RefreshToken
+class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+     def validate(self, attrs):
+        data = super().validate(attrs)
+        refresh = self.get_token(self.user)
+        data['refresh'] = str(refresh)
+        data['access'] = str(refresh.access_token)
+        data['role'] = self.user.role
+        return data
+class MyTokenRefreshSerializer(TokenRefreshSerializer):
+    def validate(self, attrs):
+        data = super().validate(attrs)
+        refresh = RefreshToken(attrs['refresh'])
+        return data
+class MyTokenObtainPairView(TokenObtainPairView):
+    serializer_class = MyTokenObtainPairSerializer
+class MyTokenRefreshView(TokenRefreshView):
+    serializer_class = MyTokenRefreshSerializer
 schema_view = get_schema_view(
    openapi.Info(
       title="SMART TIZIM API",
@@ -35,4 +59,6 @@ urlpatterns = [
    re_path(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
    re_path(r'^redoc/$', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
    path('admin/', admin.site.urls),
+   path('api/token/', MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
+   path('api/token/refresh/', MyTokenRefreshView.as_view(), name='token_refresh'),
 ]

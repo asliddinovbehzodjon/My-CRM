@@ -75,7 +75,7 @@ class Manager(User):
     def save(self, *args, **kwargs):
         if not self.pk:
             self.role=self.base_role
-            super(Director, self).save(*args, **kwargs)
+            super(Manager, self).save(*args, **kwargs)
     objects = ManagerManager()
 class Teacher(User):
     base_role = User.Role.teacher
@@ -84,5 +84,5 @@ class Teacher(User):
     def save(self, *args, **kwargs):
         if not self.pk:
             self.role=self.base_role
-            super(Director, self).save(*args, **kwargs)
+            super(Teacher, self).save(*args, **kwargs)
     objects = TeacherManager()
