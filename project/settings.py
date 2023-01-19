@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'center.apps.CenterConfig',
+    'students.apps.StudentsConfig',
     'drf_yasg',
     'rest_framework',
     'rest_framework.authtoken',
@@ -246,7 +247,8 @@ JAZZMIN_SETTINGS = {
         "auth.Group": "fas fa-users",
         "center.Director":"fas fa-address-book",
         "center.Manager":"fas fa-bullhorn",
-        "center.Teacher":"fas fa-chalkboard-teacher"
+        "center.Teacher":"fas fa-chalkboard-teacher",
+        "students.Student":"fas fa-graduation-cap"
     },
     # Icons that are used when one is not manually specified
     "default_icon_parents": "fas fa-chevron-circle-right",
