@@ -1,5 +1,6 @@
 from django.db import models
 from center.models import User
+from datetime import datetime
 # Create your models here.
 class Student(models.Model):
     class Languages(models.TextChoices):
@@ -26,3 +27,14 @@ class Student(models.Model):
     email = models.EmailField(unique=True, null=True, blank=True)
     def __str__(self):
         return self.name
+class Davomat(models.Model):
+    student = models.ForeignKey(Student,on_delete=models.CASCADE,to_field='phone',related_name='davomat')
+    status = models.BooleanField(default=True)
+    date = models.DateTimeField(auto_now_add=True,unique=True,null=True,blank=True)
+    description = models.TextField(default="Sabab ko'rsatilmagan",null=True,blank=True)
+    def __str__(self):
+        return f"{self.date.strftime('%m/%d/%Y, %H:%M:%S')} vaqtdagi davomat"
+    class Meta:
+        verbose_name ="Davomat "
+        verbose_name_plural ="Davomat "
+    

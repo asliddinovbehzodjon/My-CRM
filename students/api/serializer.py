@@ -1,6 +1,11 @@
 from rest_framework import serializers
 from students.models import *
+class DavomatSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Davomat
+        fields = '__all__'
 class StudentSerializer(serializers.ModelSerializer):
+    davomat = DavomatSerializer(many=True,read_only=True)
     class Meta:
         model = Student
         fields = "__all__"
@@ -13,3 +18,6 @@ class StudentSerializer(serializers.ModelSerializer):
         validated_data['user'] = user
         student = Student.objects.create(**validated_data)
         return student
+
+
+        
