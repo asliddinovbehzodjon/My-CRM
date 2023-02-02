@@ -37,4 +37,12 @@ class Davomat(models.Model):
     class Meta:
         verbose_name ="Davomat "
         verbose_name_plural ="Davomat "
-    
+class Test(models.Model):
+    test_kodi = models.CharField(max_length=100)
+    fan_nomi = models.CharField(max_length=100)
+    talaba = models.CharField(max_length=100)
+    telefon_raqam = models.CharField(max_length=100)
+    savollar_soni = models.CharField(max_length=100)
+    togri_javoblar =  models.CharField(max_length=100)
+    def __str__(self):
+        return self.test_kodi

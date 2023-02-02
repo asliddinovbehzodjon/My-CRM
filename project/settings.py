@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'center.apps.CenterConfig',
     'students.apps.StudentsConfig',
     'courses.apps.CoursesConfig',
+    'payment.apps.PaymentConfig',
     'drf_yasg',
     'rest_framework',
     'rest_framework.authtoken',
@@ -253,7 +254,9 @@ JAZZMIN_SETTINGS = {
         "students.Davomat":"fas fa-calendar-check",
         "courses.Course":"fas fa-book",
         "courses.Room":"fas fa-door-closed",
-        "courses.Group":'fas fa-users'
+        "courses.Group":'fas fa-users',
+        "students.Test":"fas fa-check",
+        "payment.StudentPayment":"fas fa-money-check-alt"
     },
     # Icons that are used when one is not manually specified
     "default_icon_parents": "fas fa-chevron-circle-right",

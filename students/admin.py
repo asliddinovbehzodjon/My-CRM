@@ -8,4 +8,4 @@ class StudentAdmin(admin.ModelAdmin):
     search_fields = ['name','phone','mother_name','parent','father_name','email']
     list_per_page = 10
     list_editable = ['phone']
-admin.site.register(Davomat)
+admin.site.register([Davomat,Test])

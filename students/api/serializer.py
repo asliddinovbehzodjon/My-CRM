@@ -19,5 +19,8 @@ class StudentSerializer(serializers.ModelSerializer):
         student = Student.objects.create(**validated_data)
         return student
 
-
+class TestSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Test
+        fields ='__all__'
         
